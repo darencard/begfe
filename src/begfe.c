@@ -346,15 +346,15 @@ int ReadData (FILE *fin)
 	int i, j, index = 0, *speciesindex;
 	time_t t;
 	struct tm *current;
-	char datafile[30], outfile[50], simfile[50], pvaluefile[50];
+	char datafile[40], outprefix[40], outfile[50], simfile[50], pvaluefile[50];
 	FILE *fdata; 
 	char string[100], skip[100];
 
-	fscanf(fin,"%d%s%ld%ld%d", &sim, datafile, &seed, &ngenefamily, &(sptree.ntaxa));
+	fscanf(fin,"%d%s%s%ld%ld%d", &sim, datafile, outprefix, &seed, &ngenefamily, &(sptree.ntaxa));
 
 	if(sim == 0){
-           sprintf(outfile, "%s.out", datafile);
-           sprintf(pvaluefile,"%s.pvalue", datafile);
+           sprintf(outfile, "%s.out", outprefix);
+           sprintf(pvaluefile,"%s.pvalue", outprefix);
 		   fpvalue = (FILE*)gfopen(pvaluefile,"w");
 		   fout = (FILE*)gfopen(outfile,"w");
     }else{
